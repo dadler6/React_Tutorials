@@ -19,19 +19,23 @@ function getGreeting(user) {
   return <h1>Hello, Stranger</h1>;
 };
 
+// Make user defined component using properties
+function Greet(props) {
+  return <h1>Hello, {props.name}</h1>
+};
+
+// Define avatar user component
+function Avatar(props) {
+  return (
+    <img className="Avatar" src={props.user.avatarURL} alt={props.user.name} />
+  )  
+};
+
 // Define user
 let user1 = {
   firstName: 'Josh',
   lastName: 'Perez',
   avatarURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/220px-SNice.svg.png'
-};
-
-// Add tick
-function tick() {
-    let e = (
-        <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    );
-    return e;
 };
 
 // Try using getGreeting function w/ and w/o a user
@@ -45,12 +49,18 @@ let element3 = React.createElement(
   'Hello, world!'
 )
 
-// Tick
-let element4 = tick()
+let element4 = (
+  <h2>It is {new Date().toLocaleTimeString()}.</h2>
+);
+
+// User component
+let element5 = <Greet name="Pablo" />
 
 // Put it all together
 function App() {
-    let elements = [element, element2, element3, element4];
+    let elements = [
+      element, element2, element3, element4, element5
+    ];
     return (<div>{elements}</div>);
 }
 
